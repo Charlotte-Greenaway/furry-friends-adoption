@@ -1,0 +1,98 @@
+---
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+import Accordion from "./accordion.astro";
+const FAQs = [
+  {
+    question: "What is Furry Friends?",
+    answer:
+      "Furry Friends is a non-profit organization dedicated to rescuing and rehoming cats and dogs in need. We believe that every pet deserves a loving home and every family deserves a loyal friend. Our mission is to help animals in need find their forever homes and to provide support and resources to families who are looking to adopt a pet.",
+  },
+  {
+    question: "How can I adopt a pet from Furry Friends?",
+    answer:
+      "Adopting a pet from Furry Friends is easy! Simply visit our available cats and dogs, and fill out an adoption application. Once your application has been approved and your home has been vetted, you can schedule a meet-and-greet with the pet you are interested in. If all goes well, you can take your new furry friend home within a couple of weeks!",
+  },
+  {
+    question: "How can I support Furry Friends?",
+    answer:
+      "There are many ways to support Furry Friends! You can make a donation, volunteer your time, or foster a pet in need. You can also help by spreading the word about our organization and encouraging others to adopt a pet from Furry Friends. Every little bit helps, and we are grateful for your support!",
+  },
+  {
+    question: "How can I get involved with Furry Friends?",
+    answer:
+      "There are many ways to get involved with Furry Friends! You can volunteer your time at our shelter, help with fundraising events, or foster a pet in need. You can also help by spreading the word about our organization and encouraging others to adopt a pet from Furry Friends. If you are passionate about helping animals in need, we would love to have you join our team!",
+  },
+];
+---
+
+<section>
+  <div>
+    <div class="grid gap-4 p-8">
+      {
+        FAQs.map((faq) => (
+          //accordian
+          <Accordion title={faq.question} details={faq.answer} />
+        ))
+      }
+    </div>
+  </div>
+  <div class="w-full md:w-1/3 mx-auto">
+    <LottieAnimation src="/assets/cat-sassy.json" autoplay="visible" />
+  </div>
+</section>
+<script>
+  function accordionSetup() {
+    const accordionMenus = document.querySelectorAll(
+      ".accordion"
+    ) as NodeListOf<HTMLElement>;
+    accordionMenus.forEach((accordionMenu) => {
+      const accordionButton = accordionMenu.querySelector(
+        ".accordion__button"
+      ) as HTMLElement;
+      const accordionChevron = accordionMenu.querySelector(
+        ".accordion__chevron"
+      ) as HTMLElement;
+      const accordionContent = accordionMenu.querySelector(
+        ".accordion__content"
+      ) as HTMLElement;
+
+      if (accordionButton && accordionContent && accordionChevron) {
+        accordionButton.addEventListener("click", (event) => {
+          if (!accordionMenu.classList.contains("active")) {
+            // if accordion is currently closed, so open it
+            accordionMenu.classList.add("active");
+            accordionButton.setAttribute("aria-expanded", "true");
+
+            // set max-height to the height of the accordion content
+            // this makes it animate properly
+            accordionContent.classList.remove("hidden");
+            accordionContent.style.maxHeight =
+              accordionContent.scrollHeight + "px";
+            accordionChevron.classList.add("rotate-180");
+          } else {
+            // accordion is currently open, so close it
+            accordionMenu.classList.remove("active");
+            accordionButton.setAttribute("aria-expanded", "false");
+
+            // set max-height to the height of the accordion content
+            // this makes it animate properly
+            accordionContent.style.maxHeight = "0px";
+            accordionChevron.classList.remove("rotate-180");
+            // delay to allow close animation
+            setTimeout(() => {
+              accordionContent.classList.add("hidden");
+            }, 300);
+          }
+          event.preventDefault();
+          return false;
+        });
+      }
+    });
+  }
+
+  // runs on initial page load
+  accordionSetup();
+
+  // runs on view transitions navigation
+  document.addEventListener("astro:after-swap", accordionSetup);
+</script>

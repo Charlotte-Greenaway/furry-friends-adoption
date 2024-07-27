@@ -1,50 +1,209 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+import FAQS from "../components/FAQS.astro";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="bg-background">
+      <section class="grid lg:grid-cols-[2fr_3fr] grid-cols-1 w-full p-8 gap-4">
+        <LottieAnimation src="assets/dog-animation.json" autoplay="visible" />
+        <div class="my-auto">
+          <h1
+            class="text-5xl xl:text-6xl 2xl:text-7xl font-bold chewy text-accent"
+          >
+            Welcome to Furry Friends
+          </h1>
+          <div class="py-2 xl:py-8">
+            <h2 class="text-2xl 2xl:text-4xl font-semibold">
+              Find Your Perfect Companion
+            </h2>
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              At Furry Friends, we believe that every pet deserves a loving home
+              and every family deserves a loyal friend. Explore our selection of
+              rescue cats and dogs, and discover the joy of finding a furry
+              companion who perfectly matches your lifestyle and heart.
+            </p>
+            <h2 class="text-2xl 2xl:text-4xl font-semibold">
+              A Friend For Life Awaits
+            </h2>
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              Whether you're looking for a playful puppy or a gentle kitten, our
+              dedicated team is here to help you find a match that will bring
+              endless love and happiness to your home. Begin your journey to
+              find a friend for life today and make a difference in both your
+              life and theirs.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a href="/animals/dogs" class="w-full">
+                <button
+                  class="chewy bg-accent text-white font-semibold py-2 px-4 rounded-lg mt-4 border-accent hover:bg-background hover:text-accent border-2 transition-all w-full"
+                >
+                  Adopt A Dog
+                </button>
+              </a>
+              <a href="/animals/cats" class="w-full">
+                <button
+                  class="chewy bg-accent text-white font-semibold py-2 px-4 rounded-lg mt-4 border-accent hover:bg-background hover:text-accent border-2 transition-all w-full"
+                >
+                  Adopt A Cat
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#a1fcdfff"
+          fill-opacity="1"
+          d="M0,160L34.3,144C68.6,128,137,96,206,90.7C274.3,85,343,107,411,138.7C480,171,549,213,617,229.3C685.7,245,754,235,823,245.3C891.4,256,960,288,1029,298.7C1097.1,309,1166,299,1234,261.3C1302.9,224,1371,160,1406,128L1440,96L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"
+        ></path>
+      </svg>
+      <section class="w-full p-8 bg-muted -mt-1">
+        <h1
+          class="text-6xl xl:text-7xl 2xl:text-8xl font-bold chewy text-destructive text-center py-4"
+        >
+          Our Mission
+        </h1>
+        <div class="grid lg:grid-cols-[2fr_1fr] grid-cols-1 gap-4">
+          <div class="my-auto">
+            <h2 class="text-2xl 2xl:text-4xl font-semibold chewy">
+              Transforming Lives, One Paw at a Time
+            </h2>
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              At <span class="text-destructive font-semibold"
+                >Furry Friends</span
+              >, we are dedicated to rescuing cats and dogs from the most
+              challenging and distressing situations, offering them a
+              <span class="text-destructive font-semibold">second chance</span> at
+              a loving and nurturing home.
+            </p>
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              Our team works tirelessly to provide comprehensive care, including <span
+                class="text-destructive font-semibold">medical treatment</span
+              >, <span class="text-destructive font-semibold"
+                >behavioral rehabilitation</span
+              >, and <span class="text-destructive font-semibold"
+                >emotional support</span
+              >. By carefully matching each animal with the most suitable and
+              caring families, we ensure they receive the attention and
+              affection they deserve, transforming their lives and restoring
+              their trust in humanity.
+            </p>
+          </div>
+
+          <LottieAnimation
+            src="/assets/cat-animation.json"
+            autoplay="visible"
+          />
+        </div>
+        <div class="grid lg:grid-cols-[1fr_2fr] grid-cols-1 gap-4">
+          <div class="lg:order-1 order-2">
+            <LottieAnimation
+              src="/assets/dog-wagging.json"
+              autoplay="visible"
+            />
+          </div>
+          <div class="my-auto lg:order-2 order-1 lg:text-right">
+            <h2 class="text-2xl 2xl:text-4xl font-semibold chewy">
+              Building a Community of Compassion
+            </h2>
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              We believe that every pet has the potential to bring <span
+                class="text-destructive font-semibold">joy</span
+              > and
+              <span class="text-destructive font-semibold">companionship</span> into
+              a new family, regardless of their past experiences. Through our <span
+                class="text-destructive font-semibold">rescue efforts</span
+              > and <span class="text-destructive font-semibold"
+                >community outreach</span
+              >, we aim to make a positive and lasting impact on both our furry
+              friends and their new families.
+            </p>
+
+            <p class="text-base xl:text-lg 2xl:text-2xl">
+              Our vision is to create a world where every cat and dog finds a <span
+                class="text-destructive font-semibold">safe, loving home</span
+              >, and where the
+              <span class="text-destructive font-semibold">bond</span> between humans
+              and animals is cherished and celebrated. Together, we strive to build
+              a <span class="text-destructive font-semibold"
+                >network of support</span
+              > that fosters the well-being of pets and their families for years
+              to come.
+            </p>
+          </div>
+        </div>
+      </section>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        class="-mt-1"
+      >
+        <path
+          fill="#a1fcdf"
+          fill-opacity="1"
+          d="M0,288L48,261.3C96,235,192,181,288,170.7C384,160,480,192,576,224C672,256,768,288,864,266.7C960,245,1056,171,1152,133.3C1248,96,1344,96,1392,96L1440,96L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+        ></path>
+      </svg>
+      <section class="w-full flex flex-col items-center p-8">
+        <h1
+          class="text-4xl xl:text-5xl 2xl:text-6xl font-bold chewy text-accent text-center py-4"
+        >
+          Volunteer with Us!
+        </h1>
+        <p class="text-base xl:text-lg 2xl:text-2xl text-center">
+          Passionate about helping rescue animals? Join Furry Friends as a
+          volunteer and make a real difference! Whether you can spare a few
+          hours or more, your support helps provide care, assist with adoptions,
+          and support our mission.
+        </p>
+        <a
+          href=`/contact?message=${encodeURIComponent("I'm interested in volunteering with Furry Friends!")}`
+          ><button
+            class="chewy bg-accent text-white font-semibold py-2 px-4 rounded-lg mt-4 border-accent hover:bg-background hover:text-accent border-2 transition-all mx-auto"
+          >
+            Become a Volunteer
+          </button>
+        </a>
+      </section>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
+        ><path
+          fill="#fcd29f"
+          fill-opacity="1"
+          d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,192C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+        ></path></svg
+      >
+      <section class="bg-accent -mt-1">
+        <h1
+          class="text-4xl xl:text-5xl 2xl:text-6xl font-bold chewy text-center py-4"
+        >
+          FAQs
+        </h1>
+        <FAQS />
+      </section>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+        class="-mt-1"
+      >
+        <path
+          fill="#fcd29f"
+          fill-opacity="1"
+          d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,192C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+        ></path>
+      </svg>
+    </main>
+    <Footer />
+  </body>
 </html>

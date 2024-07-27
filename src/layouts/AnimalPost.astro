@@ -1,0 +1,116 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import AdoptionDownload from "../components/adoptionDownload.astro";
+
+type Props = CollectionEntry<"dogs" | "cats">["data"];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+//get url path if contains cats or dogs
+const urlPath = Astro.url.pathname;
+const animalType = urlPath.includes("cats") ? "cats" : "dogs";
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+    <style>
+      .hero-image {
+        width: 100%;
+      }
+      .hero-image img {
+        display: block;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: var(--box-shadow);
+      }
+      .prose {
+        width: 720px;
+        max-width: calc(100% - 2em);
+        margin: auto;
+        padding: 1em;
+        color: rgb(var(--gray-dark));
+      }
+      .title {
+        margin-bottom: 1em;
+        padding: 1em 0;
+        text-align: center;
+        line-height: 1;
+      }
+      .title h1 {
+        margin: 0 0 0.5em 0;
+      }
+      .date {
+        margin-bottom: 0.5em;
+        color: rgb(var(--gray));
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+    <main>
+      <article>
+        <div class="hero-image">
+          {heroImage && <img width={960} height={510} src={heroImage} alt="" class="px-4" />}
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#fcd29f"
+            fill-opacity="1"
+            d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,192C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+        <div class="bg-accent w-full -mt-1">
+          <div class="prose bg-accent w-full">
+            <div class="title chewy text-secondary">
+              <div class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <div class="last-updated-on">
+                      Last updated on <FormattedDate date={updatedDate} />
+                    </div>
+                  )
+                }
+              </div>
+              <h1 class="text-6xl md:text-8xl">{title}</h1>
+              <hr />
+            </div>
+            <slot />
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          class="-mt-1"
+        >
+          <path
+            fill="#fcd29f"
+            fill-opacity="1"
+            d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,149.3C672,149,768,171,864,192C960,213,1056,235,1152,213.3C1248,192,1344,128,1392,96L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+          ></path>
+        </svg>
+      </article>
+    </main>
+    <div class="flex flex-col items-center mb-32 chewy mx-auto bg-muted text-center p-4 2xl:mb-60" style="box-shadow: 5px 5px 16px 10px rgba(130,124,110,.25);border-radius: 39% 28% 64% 20% / 28% 16% 57% 66%;max-width:960px;max-height:1500px">
+      <h2 class="chewy text-destructive text-6xl mb-8">Adoption Form</h2>
+      <p class="text-xl">
+        Download the adoption form for {title} below.
+      </p>
+      <p class="text-xl">
+        Fill it out and bring it with you to the shelter to speed up the
+        adoption process.
+      </p>
+      <AdoptionDownload animalType={animalType} animalName={title} />
+    </div>
+    <Footer />
+  </body>
+</html>

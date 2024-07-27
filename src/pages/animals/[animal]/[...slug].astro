@@ -1,0 +1,28 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import AnimalPost from '../../../layouts/AnimalPost.astro';
+
+export const prerender = true;
+export async function getStaticPaths() {
+	const dogPosts = await getCollection('dogs');
+	const catPosts = await getCollection('cats');
+	return [
+		...dogPosts.map((post) => ({
+			params: { animal: 'dogs', slug: post.slug },
+			props: post,
+		})),
+		...catPosts.map((post) => ({
+			params: { animal: 'cats', slug: post.slug },
+			props: post,
+		})),
+	];
+}
+type Props = CollectionEntry<'dogs'|'cats'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<AnimalPost {...post.data}>
+	<Content />
+</AnimalPost>

@@ -3,17 +3,44 @@
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
+ @import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+@layer base {
+	/* Add your custom styles here */
+	:root {
+		--background: #ffffff; /* Light background */
+		--foreground: #000000; /* Dark foreground */
+	  
+		--card: #ffffff; /* Light card background */
+		--card-foreground: #000000; /* Dark card foreground */
+	  
+		--popover: #ffffff; /* Light popover background */
+		--popover-foreground: #000000; /* Dark popover foreground */
+	  
+		--primary: #fcefefff; /* Lavender Blush */
+		--primary-foreground: #000000; /* Dark text on primary */
+	  
+		--secondary: #7fd8beff; /* Tiffany Blue */
+		--secondary-foreground: #000000; /* Dark text on secondary */
+	  
+		--muted: #a1fcdfff; /* Aquamarine */
+		--muted-foreground: #000000; /* Dark text on muted */
+	  
+		--accent: #fcd29fff; /* Sunset */
+		--accent-foreground: #000000; /* Dark text on accent */
+	  
+		--destructive: #fcab64ff; /* Sandy Brown */
+		--destructive-foreground: #ffffff; /* Light text on destructive */
+	  
+		--border: #cccccc; /* Light border */
+		--input: #ffffff; /* Light input background */
+		--ring: #fcefefff; /* Lavender Blush */
+	  
+		--radius: 0.5rem; /* Border radius */
+	  }
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -42,19 +69,13 @@ body {
 	font-size: 20px;
 	line-height: 1.7;
 }
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
 }
@@ -130,9 +151,6 @@ hr {
 	body {
 		font-size: 18px;
 	}
-	main {
-		padding: 1em;
-	}
 }
 
 .sr-only {
@@ -152,3 +170,23 @@ hr {
 	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
 	white-space: nowrap;
 }
+
+.chewy {
+	font-family: "Chewy", system-ui;
+	font-weight: 400;
+	font-style: normal;
+  }
+
+  .magicpattern { 
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: repeat;
+	background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cdefs%3E%3CclipPath id=%22a%22%3E%3Cpath fill=%22currentColor%22 d=%22M811 625Q644 750 487 772T193.5 647Q57 500 214.5 389t308-149.5q150.5-38.5 303 111T811 625Z%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg clip-path=%22url(%23a)%22%3E%3Cpath fill=%22%23a1fcdf%22 d=%22M811 625Q644 750 487 772T193.5 647Q57 500 214.5 389t308-149.5q150.5-38.5 303 111T811 625Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+
+  .flip-y {
+	transform: rotateY(180deg);
+  }
+  

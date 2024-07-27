@@ -1,0 +1,49 @@
+---
+export interface Props {
+  animalName: string;
+  animalType: string;
+}
+
+const { animalName, animalType } = Astro.props;
+const animalNameFormatted = animalName.replace(/\s/g, "-").toLowerCase();
+---
+
+<button
+  id="downloadButton"
+  class="chewy bg-accent text-white font-semibold py-2 px-4 rounded-lg mt-4 border-accent hover:bg-transparent hover:text-accent border-2 transition-all mx-auto"
+  >Download {animalName}'s Adoption Form</button
+>
+<input type="hidden" id="animalName" value={animalName} />
+<input type="hidden" id="animalType" value={animalType} />
+<input type="hidden" id="animalNameFormatted" value={animalNameFormatted} />
+
+<script>
+  const downloadButton = document.getElementById("downloadButton");
+  if (downloadButton) {
+    const animalName = (
+      document.getElementById("animalName") as HTMLInputElement
+    )?.value;
+    const animalType = (
+      document.getElementById("animalType") as HTMLInputElement
+    )?.value;
+    const animalNameFormatted = (
+      document.getElementById("animalNameFormatted") as HTMLInputElement
+    )?.value;
+    downloadButton.addEventListener("click", function () {
+      fetch("/api/generate-adoption-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ animalName, animalType }),
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          console.log(blob);
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `adoption-form-${animalNameFormatted}.pdf`;
+          a.click();
+        });
+    });
+  }
+</script>
