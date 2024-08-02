@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import LottieAnimation from "astro-integration-lottie/Lottie.astro";
+import Pawprints from "../components/pawprints.astro";
 //get search query from url message=
 const message = Astro.url.searchParams.get("message") || "";
 ---
@@ -15,7 +16,8 @@ const message = Astro.url.searchParams.get("message") || "";
   </head>
   <body>
     <Header />
-    <main class="bg-background">
+    <main class="bg-background flex items-center">
+      <Pawprints />
       <form class="p-8 max-w-3xl mx-auto">
         <div class="grid grid-cols-2 items-center">
           <h1
@@ -76,6 +78,7 @@ const message = Astro.url.searchParams.get("message") || "";
           </div>
         </div>
       </form>
+      <Pawprints />
     </main>
     <Footer />
   </body>
